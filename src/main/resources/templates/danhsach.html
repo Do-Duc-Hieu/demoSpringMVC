@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Taco Cloud</title>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>dob</th>
+				<th>department</th>
+				<th>approved</th>
+			</tr>
+			<tr th:each="student : ${students}">
+				<td th:text="${student.id}"></td>
+				<td th:text="${student.name}"></td>
+				<td th:text="${student.dob}"></td>
+				<td th:text="${student.department}"></td>
+				<td th:text="${student.approved}"></td>
+				<td>
+					<form th:action="@{/danhsach/approve/{id}(id=${student.id})}" method="post">
+						<button type="submit">Approve</button>
+					</form>
+					<form th:action="@{/danhsach/delete/{id}(id=${student.id})}" method="get">
+						<button type="submit">Delete</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
